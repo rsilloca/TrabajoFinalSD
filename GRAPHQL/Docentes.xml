@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<PLANTEL>
+    <DOCENTE>
+        <NOMBRES>Luis</NOMBRES>
+        <APELLIDOS>Aliaga Mariaca</APELLIDOS>
+        <DEPARTAMENTO>Matematicas</DEPARTAMENTO>
+        <CORREO>luis@gmail.com</CORREO>
+        <TELEFONO>987456321</TELEFONO>
+        <DIRECCION>Narnia-manzana Q- lte4</DIRECCION>
+        <DNI>45612389</DNI>
+    </DOCENTE>
+    <DOCENTE>
+        <NOMBRES>Juan</NOMBRES>
+        <APELLIDOS>Perez Palotes</APELLIDOS>
+        <DEPARTAMENTO>Fisica</DEPARTAMENTO>
+        <CORREO>JuanPerez@gmail.com</CORREO>
+        <TELEFONO>963258741</TELEFONO>
+        <DIRECCION>Claveles-145</DIRECCION>
+        <DNI>12345678</DNI>
+    </DOCENTE>
+    <DOCENTE>
+        <NOMBRES>Javier</NOMBRES>
+        <APELLIDOS>Ramirez Gonzales</APELLIDOS>
+        <DEPARTAMENTO>Fisica</DEPARTAMENTO>
+        <CORREO>Ramirez@gmail.com</CORREO>
+        <TELEFONO>963258741</TELEFONO>
+        <DIRECCION>Rosario-145</DIRECCION>
+        <DNI>15965478</DNI>
+    </DOCENTE>
+    <DOCENTE>
+        <NOMBRES>Pedro</NOMBRES>
+        <APELLIDOS>Perez Rodriguez</APELLIDOS>
+        <DEPARTAMENTO>Ing Sistemas</DEPARTAMENTO>
+        <CORREO>Rodriguez@gmail.com</CORREO>
+        <TELEFONO>963258741</TELEFONO>
+        <DIRECCION>Maria Armando-145</DIRECCION>
+        <DNI>15965479</DNI>
+    </DOCENTE>
+    <DOCENTE>
+        <NOMBRES>Maria</NOMBRES>
+        <APELLIDOS>Fernandez Palotes</APELLIDOS>
+        <DEPARTAMENTO>Filosofia</DEPARTAMENTO>
+        <CORREO>Fernandez@gmail.com</CORREO>
+        <TELEFONO>963258741</TELEFONO>
+        <DIRECCION>urb Segovia-145</DIRECCION>
+        <DNI>urb Segovia-145</DNI>
+    </DOCENTE>
+</PLANTEL>
