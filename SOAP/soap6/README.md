@@ -1,3 +1,33 @@
-# TrabajoFinalSD
+# Aplicactibvo SOAP para el registro de docentes
 
-Ejecutar el codigo bajo el JRE 1.8
+_El presente aplicativo es una pequeña implementacion para registrar datos de docentes en archivos XML haciendo uso de la libreria jax-ws_
+
+## Comenzando 🚀
+
+_El proyecto solo necesita ejecutar dos clase: docente service publish para poder levantar el servicio y la clase consumer, para poder consumir el servivio levantado._
+
+
+### Pre-requisitos 📋
+
+
+
+```
+Tener instalado un JRE 1.8 y un IDE para:
+-Eclipse
+-NetBeans
+-IntelliJ IDEA
+```
+
+
+
+
+## Construido con 🛠️
+
+* [Eclipse](https://www.eclipse.org/downloads) - IDE utilizado
+
+## Autores ✒️
+
+_Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
+
+* **Luis Aliaga Mariaca** - *Trabajo Inicial* - [Hualmss](https://github.com/Hualmss)
+
