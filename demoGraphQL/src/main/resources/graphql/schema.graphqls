@@ -1,5 +1,6 @@
 type Query {
   docenteByDNI(dni: String): Docente
+  docentes(match: String): [Docente]
 }
 
 type Docente {

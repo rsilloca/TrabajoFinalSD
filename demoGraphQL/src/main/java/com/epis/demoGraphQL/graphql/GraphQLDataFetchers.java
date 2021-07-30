@@ -21,7 +21,7 @@ public class GraphQLDataFetchers {
 
     private List<Map<String, String>> docentes;
 
-    public graphql.schema.DataFetcher getDocenteDNIIdDataFetcher() {
+    public graphql.schema.DataFetcher getDocenteDNIDataFetcher() {
         docentes = new ArrayList<Map<String, String>>();
         try {
             File xmlFile = ResourceUtils.getFile("src/main/resources/Docentes.xml");
@@ -58,6 +58,45 @@ public class GraphQLDataFetchers {
                     .filter(docente -> docente.get("dni").equals(docenteDNI))
                     .findFirst()
                     .orElse(null);
+        };
+    }
+
+    public graphql.schema.DataFetcher getDocentesMatchDataFetcher() {
+        docentes = new ArrayList<Map<String, String>>();
+        try {
+            File xmlFile = ResourceUtils.getFile("src/main/resources/Docentes.xml");
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            if (xmlFile.exists()) {
+                Document doc = db.parse(xmlFile);
+                doc.getDocumentElement().normalize();
+                NodeList nodeList = doc.getElementsByTagName("DOCENTE");
+                for (int i = 0; i < nodeList.getLength(); i++)  {
+                    Node node = nodeList.item(i);
+                    if (node.getNodeType() == Node.ELEMENT_NODE) {
+                        Element e = (Element) node;
+                        Map<String, String> data = new HashMap<String, String>() {{
+                            put("nombres", e.getElementsByTagName("NOMBRES").item(0).getTextContent());
+                            put("apellidos", e.getElementsByTagName("APELLIDOS").item(0).getTextContent());
+                            put("departamento", e.getElementsByTagName("DEPARTAMENTO").item(0).getTextContent());
+                            put("correo", e.getElementsByTagName("CORREO").item(0).getTextContent());
+                            put("telefono", e.getElementsByTagName("TELEFONO").item(0).getTextContent());
+                            put("direccion", e.getElementsByTagName("DIRECCION").item(0).getTextContent());
+                            put("dni", e.getElementsByTagName("DNI").item(0).getTextContent());
+                        }};
+                        docentes.add(data);
+                    }
+                }
+            }
+        } catch (ParserConfigurationException | SAXException | IOException e) {
+            e.printStackTrace();
+        }
+        return dataFetchingEnvironment -> {
+            String match = dataFetchingEnvironment.getArgument("match");
+            return docentes
+                    .stream()
+                    .filter(docente -> docente.get("nombres").toLowerCase(Locale.ROOT).contains(match.toLowerCase(Locale.ROOT)))
+                    .toArray();
         };
     }
 }
