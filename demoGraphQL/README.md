@@ -1,7 +1,8 @@
 Aplicactibvo GRAPHQL para la consulta de docentes
 El presente aplicativo es una pequeña implementacion para registrar datos de docentes en archivos XML haciendo uso de GraphQL
 
-Comenzando 🚀Se tienen 3 archivos necesarios: schema.graphqls (definición de modelos), GraphQLDataFetcher (que obtiene los datos de la fuente de datos) y GraphQLProvider (que inicializa el esquema y registra las queries).
+Comenzando 🚀
+Se tienen 3 archivos necesarios: schema.graphqls (definición de modelos), GraphQLDataFetcher (que obtiene los datos de la fuente de datos) y GraphQLProvider (que inicializa el esquema y registra las queries).
 
 Pre-requisitos 📋
 Tener instalado un JRE 1.8 y un IDE para:
