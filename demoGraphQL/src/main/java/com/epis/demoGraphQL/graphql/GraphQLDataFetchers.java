@@ -2,68 +2,62 @@ package com.epis.demoGraphQL.graphql;
 
 import com.google.common.collect.ImmutableMap;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ResourceUtils;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
 @Component
 public class GraphQLDataFetchers {
 
-    private static List<Map<String, String>> books = Arrays.asList(
-            ImmutableMap.of("id", "book-1",
-                    "name", "Harry Potter and the Philosopher's Stone",
-                    "pageCount", "223",
-                    "authorId", "author-1"),
-            ImmutableMap.of("id", "book-2",
-                    "name", "Moby Dick",
-                    "pageCount", "635",
-                    "authorId", "author-2"),
-            ImmutableMap.of("id", "book-3",
-                    "name", "Interview with the vampire",
-                    "pageCount", "371",
-                    "authorId", "author-3")
-    );
+    private List<Map<String, String>> docentes;
 
-    private static List<Map<String, String>> authors = Arrays.asList(
-            ImmutableMap.of("id", "author-1",
-                    "firstName", "Joanne",
-                    "lastName", "Rowling"),
-            ImmutableMap.of("id", "author-2",
-                    "firstName", "Herman",
-                    "lastName", "Melville"),
-            ImmutableMap.of("id", "author-3",
-                    "firstName", "Anne",
-                    "lastName", "Rice")
-    );
-
-    public graphql.schema.DataFetcher getBookByIdDataFetcher() {
+    public graphql.schema.DataFetcher getDocenteDNIIdDataFetcher() {
+        docentes = new ArrayList<Map<String, String>>();
+        try {
+            File xmlFile = ResourceUtils.getFile("src/main/resources/Docentes.xml");
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            if (xmlFile.exists()) {
+                Document doc = db.parse(xmlFile);
+                doc.getDocumentElement().normalize();
+                NodeList nodeList = doc.getElementsByTagName("DOCENTE");
+                for (int i = 0; i < nodeList.getLength(); i++)  {
+                    Node node = nodeList.item(i);
+                    if (node.getNodeType() == Node.ELEMENT_NODE) {
+                        Element e = (Element) node;
+                        Map<String, String> data = new HashMap<String, String>() {{
+                            put("nombres", e.getElementsByTagName("NOMBRES").item(0).getTextContent());
+                            put("apellidos", e.getElementsByTagName("APELLIDOS").item(0).getTextContent());
+                            put("departamento", e.getElementsByTagName("DEPARTAMENTO").item(0).getTextContent());
+                            put("correo", e.getElementsByTagName("CORREO").item(0).getTextContent());
+                            put("telefono", e.getElementsByTagName("TELEFONO").item(0).getTextContent());
+                            put("direccion", e.getElementsByTagName("DIRECCION").item(0).getTextContent());
+                            put("dni", e.getElementsByTagName("DNI").item(0).getTextContent());
+                        }};
+                        docentes.add(data);
+                    }
+                }
+            }
+        } catch (ParserConfigurationException | SAXException | IOException e) {
+            e.printStackTrace();
+        }
         return dataFetchingEnvironment -> {
-            String bookId = dataFetchingEnvironment.getArgument("id");
-            return books
+            String docenteDNI = dataFetchingEnvironment.getArgument("dni"); // "45612389";
+            return docentes
                     .stream()
-                    .filter(book -> book.get("id").equals(bookId))
+                    .filter(docente -> docente.get("dni").equals(docenteDNI))
                     .findFirst()
                     .orElse(null);
-        };
-    }
-
-    public graphql.schema.DataFetcher getAuthorDataFetcher() {
-        return dataFetchingEnvironment -> {
-            Map<String,String> book = dataFetchingEnvironment.getSource();
-            String authorId = book.get("authorId");
-            return authors
-                    .stream()
-                    .filter(author -> author.get("id").equals(authorId))
-                    .findFirst()
-                    .orElse(null);
-        };
-    }
-
-    public graphql.schema.DataFetcher getPageCountDataFetcher() {
-        return dataFetchingEnvironment -> {
-            Map<String,String> book = dataFetchingEnvironment.getSource();
-            return book.get("totalPages");
         };
     }
 }

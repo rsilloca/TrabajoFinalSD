@@ -46,15 +46,10 @@ public class GraphQLProvider {
         return schemaGenerator.makeExecutableSchema(typeRegistry, runtimeWiring);
     }
 
-    // In the GraphQLProvider class
     private RuntimeWiring buildWiring() {
         return RuntimeWiring.newRuntimeWiring()
                 .type(newTypeWiring("Query")
-                        .dataFetcher("bookById", graphQLDataFetchers.getBookByIdDataFetcher()))
-                .type(newTypeWiring("Book")
-                        .dataFetcher("author", graphQLDataFetchers.getAuthorDataFetcher())
-                        // This line is new: we need to register the additional DataFetcher
-                        .dataFetcher("pageCount", graphQLDataFetchers.getPageCountDataFetcher()))
+                        .dataFetcher("docenteByDNI", graphQLDataFetchers.getDocenteDNIIdDataFetcher()))
                 .build();
     }
 

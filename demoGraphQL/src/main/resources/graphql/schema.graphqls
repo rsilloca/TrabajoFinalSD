@@ -1,31 +1,13 @@
 type Query {
-  bookById(id: ID): Book
+  docenteByDNI(dni: String): Docente
 }
 
-type Book {
-  id: ID
-  name: String
-  pageCount: Int
-  author: Author
+type Docente {
+  nombres: String
+  apellidos: String
+  departamento: String
+  correo: String
+  telefono: String
+  direccion: String
+  dni: String
 }
-
-type Author {
-  id: ID
-  firstName: String
-  lastName: String
-}
-
-# type Query {
-#   docentes(): List<Docente>
-# }
-
-# type Docente {
-#   id: ID
-#   nombres: String
-#   apellidos: String
-#   departamento: String
-#   correo: String
-#   telefono: String
-#   direccion: String
-#   dni: String
-# }
