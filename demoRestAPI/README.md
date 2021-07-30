@@ -32,5 +32,5 @@ _En caso de no funcionar correcta, dentro del archivo Graddle cambiar la versió
 ## Autores ✒️
 
 
-* **Raquel Stephanie Silloca Castro** - *Trabajo Inicial* - [rsilloca](https://github.com/rsilloca)
+* **Raquel Stephanie Silloca Castro** - *Trabajo Inicial* - [rsilloca](https://github.com/rsilloca/TrabajoFinalSD)
 
