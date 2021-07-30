@@ -4,7 +4,7 @@ _El presente aplicativo es una pequeña implementacion para registrar datos de d
 
 ## Comenzando 🚀
 
-_El proyecto solo necesita ejecutar dos clase: docente service publish para poder levantar el servicio y la clase consumer, para poder consumir el servivio levantado._
+_El proyecto solo necesita ejecutar dos clase: docente service publish para poder levantar el servicio y la clase consumer, para poder consumir el servicio levantado._
 
 
 ### Pre-requisitos 📋
@@ -27,7 +27,6 @@ Tener instalado un JRE 1.8 y un IDE para:
 
 ## Autores ✒️
 
-_Menciona a todos aquellos que ayudaron a levantar el proyecto desde sus inicios_
 
 * **Luis Aliaga Mariaca** - *Trabajo Inicial* - [Hualmss](https://github.com/Hualmss)
 
